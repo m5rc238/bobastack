@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>proto1 — Run report</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #161a21;
+    --panel2: #1a1f27;
+    --line: #262c36;
+    --text: #e6e9ef;
+    --dim: #99a1b3;
+    --dimmer: #6b7488;
+    --ok: #7ee2b8;
+    --warn: #f0c674;
+    --bad: #f08c8c;
+    --human: #9db4f0;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 24px 72px; background: var(--bg); color: var(--text);
+    font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; }
+  .crumb { font-family: var(--mono); font-size: 12.5px; margin-bottom: 20px; }
+  .crumb a { color: var(--dim); text-decoration: none; }
+  .crumb a:hover { color: var(--text); }
+  .crumb span { color: var(--dimmer); }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .meta { font-family: var(--mono); font-size: 12.5px; color: var(--dimmer); margin: 0 0 28px; }
+
+  .headline {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px; margin-bottom: 32px;
+  }
+  .headline .label { font-family: var(--mono); font-size: 11.5px; color: var(--dimmer); display: block; margin-bottom: 8px; }
+  .headline p { margin: 0 0 14px; }
+  .headline p:last-child { margin-bottom: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    font-family: var(--mono); font-size: 11.5px; padding: 3px 9px;
+    border-radius: 3px; border: 1px solid;
+  }
+  .c-ok { color: var(--ok); border-color: #2c5c4a; background: #12251f; }
+  .c-bad { color: var(--bad); border-color: #6b3a3a; background: #261618; }
+  .c-warn { color: var(--warn); border-color: #6b5a2e; background: #262013; }
+  .c-human { color: var(--human); border-color: #3a4770; background: #161b2a; }
+  .c-dim { color: var(--dimmer); border-color: #2a2f38; background: #171a20; }
+
+  h2 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--dimmer); font-weight: 600;
+    margin: 34px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  .step {
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 2px solid var(--line); border-radius: 6px;
+    padding: 14px 16px; margin-bottom: 10px;
+  }
+  .step.v-verified { border-left-color: var(--ok); }
+  .step.v-not-verified { border-left-color: var(--bad); }
+  .step.v-uncertain { border-left-color: var(--warn); }
+  .step.v-needs-human { border-left-color: var(--human); }
+  .step .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .step .name { font-weight: 600; }
+  .step .verdict { font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+  .step .body { margin-top: 8px; font-size: 13.5px; color: var(--dim); }
+  .step .body b { color: var(--text); font-weight: 600; }
+  .step .body .kv { display: block; margin-top: 6px; font-family: var(--mono); font-size: 12.5px; color: var(--dimmer); }
+  .step .body .kv em { color: var(--dim); font-style: normal; }
+  code { font-family: var(--mono); font-size: 12.5px; background: #1e232c; padding: 1px 5px; border-radius: 3px; color: var(--ok); }
+  .boundary { margin-top: 8px; font-size: 13px; color: var(--dimmer); border-top: 1px dashed var(--line); padding-top: 8px; }
+  .boundary b { color: var(--dim); font-weight: 600; font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.06em; }
+  footer { margin-top: 44px; font-family: var(--mono); font-size: 12px; color: var(--dimmer); }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="crumb"><a href="../index.html">lab</a> <span>/</span> <span>proto1</span> <span>/</span> <span>current</span></p>
+
+  <h1>Run report</h1>
+  <p class="meta">run 2026-09-28-14 · task “empty cart icon in header” · ended 3 min ago</p>
+
+  <div class="headline">
+    <span class="label">this run is</span>
+    <p>Not verified. The header was observed in the browser at 2 viewports, but the intended state could not be distinguished from the pre-existing behavior.</p>
+    <div class="chips">
+      <span class="chip c-ok">2 verified</span>
+      <span class="chip c-bad">1 not verified</span>
+      <span class="chip c-warn">1 uncertain</span>
+      <span class="chip c-human">1 needs human judgment</span>
+    </div>
+  </div>
+
+  <h2>Steps</h2>
+
+  <div class="step v-verified">
+    <div class="top">
+      <span class="name">Reproduce current behavior</span>
+      <span class="verdict v-verified">verified</span>
+    </div>
+    <div class="body">
+      Ran the app and confirmed the icon does not render in the header at 1280×800 and 390×844.
+      <span class="kv"><em>observed</em> header contains 3 children: logo, nav, actions — no icon node</span>
+    </div>
+    <div class="boundary"><b>does not establish</b> that the icon is the intended fix, only that it is missing.</div>
+  </div>
+
+  <div class="step v-verified">
+    <div class="top">
+      <span class="name">Smallest safe change applied</span>
+      <span class="verdict v-verified">verified</span>
+    </div>
+    <div class="body">
+      One component touched. Existing snapshot suite unchanged and green.
+      <span class="kv"><em>observed</em> 1 file changed, 14 tests passed, 0 snapshots changed</span>
+    </div>
+    <div class="boundary"><b>does not establish</b> anything about the product requirement behind the ticket.</div>
+  </div>
+
+  <div class="step v-not-verified">
+    <div class="top">
+      <span class="name">Icon renders after change</span>
+      <span class="verdict v-not-verified">not verified</span>
+    </div>
+    <div class="body">
+      <b>Did not reproduce after the fix.</b> The node exists in the DOM but has zero width, so nothing is painted.
+      <span class="kv"><em>observed</em> element found, computed width 0px, bounding client rect 0×0</span>
+    </div>
+    <div class="boundary"><b>does not establish</b> whether this is a layout bug or a styling omission — the protocol stops at the mismatch.</div>
+  </div>
+
+  <div class="step v-uncertain">
+    <div class="top">
+      <span class="name">Layout at 390px</span>
+      <span class="verdict v-uncertain">uncertain</span>
+    </div>
+    <div class="body">
+      Screenshot taken at the target width, but the parent collapses only after paint and the capture may have raced it.
+      <span class="kv"><em>observed</em> captured frame shows 2 nav items, expected 3 — no clean re-run</span>
+    </div>
+    <div class="boundary"><b>does not establish</b> a mobile regression. Re-running is cheap; ambiguity here is the agent's, not the design's.</div>
+  </div>
+
+  <div class="step v-needs-human">
+    <div class="top">
+      <span class="name">Correct icon &amp; placement</span>
+      <span class="verdict v-needs-human">needs human judgment</span>
+    </div>
+    <div class="body">
+      Two candidate assets in the repo, no ticket detail specifying which, and no design source to compare against.
+      <span class="kv"><em>observed</em> cart.svg (24px) and cart-outline.svg (20px) both present, no reference</span>
+    </div>
+    <div class="boundary"><b>does not establish</b> anything. This question is not answerable by the protocol and should not have been attempted silently.</div>
+  </div>
+
+  <footer>
+    <a href="../index.html">← back to lab</a> · <a href="experiment.md">experiment log</a>
+  </footer>
+
+</div>
+</body>
+</html>

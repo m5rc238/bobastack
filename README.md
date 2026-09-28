@@ -13,6 +13,7 @@ Every workflow declares a trigger, goal, procedure, verification step, stop cond
 | Path | Purpose |
 | --- | --- |
 | [PRD.md](PRD.md) | Full product definition: rationale, design principles, initial workflow set, evolution loop |
+| [lab/index.html](lab/index.html) | The lab — one problem, several candidate solutions, one current |
 
 ## Initial workflow set
 
